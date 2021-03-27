@@ -1,0 +1,65 @@
+{
+  "version": 2,
+  "cmakeMinimumRequired": {
+      "major": 3,
+      "minor": 20,
+      "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/cmake-build-${presetName}"
+    },
+    {
+      "name": "ninja",
+      "inherits": "default",
+      "generator": "Ninja"
+    },
+    {
+      "name": "msbuild",
+      "inherits": "default",
+      "displayName": "MSBuild Config",
+      "description": "Build With MSBuild",
+      "generator": "Visual Studio 16 2019",
+      "architecture": "Win32",
+      "toolset": "v141_xp,host=x64"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "hidden": true
+    },
+    {
+      "name": "ninja",
+      "inherits": "default",
+      "configurePreset": "ninja"
+    },
+    {
+      "name": "msbuild",
+      "configurePreset": "msbuild",
+      "configuration": "RelWithDebInfo"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "output": {
+        "verbosity": "verbose"
+      }
+    },
+    {
+      "name": "ninja",
+      "inherits": "default",
+      "configurePreset": "ninja"
+    },
+    {
+      "name": "msbuild",
+      "inherits": "default",
+      "configurePreset": "msbuild",
+      "configuration": "RelWithDebInfo"
+    }
+  ]
+}
